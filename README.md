@@ -3,6 +3,8 @@ Cours d'IUT Informatique
 
 Ces cours sont ceux de la promotion 2012-2014 de l'IUT Informatique d'Aix-en-Provence. Les cours sont séparés en deux dossiers (IUT1 et IUT2) correspondant aux années, et encore en deux dossiers (UE1 et UE2) correspondant aux Unités d'Enseignement (UE1 = informatique; UE2 = général).
 
+D'autres cours sont disponibles sur [le site de Tom Cha](http://chastom.free.fr/documents.php).
+
 Cours officiels
 ----
 Les PDF des cours fournis par les professeurs ne sont peut être pas la dernière version, il est parfois possible de la télécharger sur leurs sites respectifs :
