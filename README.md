@@ -20,7 +20,7 @@ Fichiers nécessaires
 
 Notes
 ----
-Sauf mention **Correction** explicite, les TP fournis ne sont **PAS** des corrections, mais un travail personnel.
+Les contenus des dossiers *Anglais* et *Communication*, ainsi que les TP, sont du travail personnel que je met sur le dépôt à titre d'exemple; ces travaux sont mis à disposition de tout le monde à titre d'exemple et **NE** sont **PAS** des corrections. Seuls les fichiers portant explicitement la mention *Correction* le sont.
 
 Certains cours de 1ère année ne sont pas terminés, je les complèterais quand j'aurais du temps.
 
