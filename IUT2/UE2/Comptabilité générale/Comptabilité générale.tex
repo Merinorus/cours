@@ -1,0 +1,165 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{hyperref}   % Sommaire PDF
+\usepackage{amsmath}    % Symboles mathématiques
+\usepackage{amssymb}    % Flèches barrées
+\usepackage{graphicx}   % Insertion d'images
+\usepackage{multirow}   % Fusion de cellules de tableaux
+\usepackage{float}      % Placement des figures
+\usepackage{xcolor}     % Couleurs
+\usepackage{eurosym}    % Symbole €
+\usepackage{listings}	% Listings
+\usepackage{alltt}		% Verbatim
+
+% En-tête, pied-de-page
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{Comptabilité générale\\2\up{ème} année}
+\chead{}
+\rhead{Marie-Claude CACCHIA}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+\lstset{
+    frame=single,
+    breaklines
+}
+
+\begin{document}
+    \title{Comptabilité générale\\\small{2\up{ème} année}}
+    \author{Marie-Claude CACCHIA}
+    \date{}
+
+% Page de garde + page blanche
+\maketitle
+\setcounter{page}{0} \thispagestyle{empty} % Ne pas numéroter la page de garde + pas d'en-tête/pied-de-page
+
+% Début du document
+\newpage
+\part{Les factures}
+	\section{Introduction}
+		Pour l'enregistrement des achats et des ventes, la facture est le seul document obligatoire. Elle est établie en deux exemplaires : un pour le client et un pour le fournisseur. Elle doit impérativement contenir un certains nombres de mentions et leur défaut peut entrainer des sanctions.
+		
+	\section{Les mentions obligatoires}
+		\paragraph{Exemple}~\\
+		\begin{table}[H]
+			\begin{tabular}{|p{10cm}|c|c|c|}
+				\hline
+				\multicolumn{4}{|c|}{\textbf{BARIERE Nicolas}} \\
+				\multicolumn{4}{|c|}{\textbf{Chemin du Maquis}} \\
+				\multicolumn{4}{|c|}{\textbf{13100 AIX EN PROVENCE}} \\
+				\multicolumn{4}{|c|}{\textbf{Tél : 06.26.82.55.99}} \\
+				\multicolumn{4}{|c|}{\textbf{email : bariere.nicolas@free.fr}} \\
+				\multicolumn{4}{|c|}{\textbf{SIRET N\degre425.659.783.000.15 - APE N\degre741 G}} \\
+				\multicolumn{4}{|c|}{\textbf{N\degre Org.Formation: 931 310 237 13}} \\
+				\hline
+				\multirow{3}{*}{FACTURE N\degre 12/59} & \multicolumn{3}{|c|}{Etablissements MEDICA}\\
+				& \multicolumn{3}{|c|}{6 chemin de la Rivière}\\
+				& \multicolumn{3}{|c|}{21 000 dijon}\\
+				\hline
+				DÉSIGNATION & P.U H.T & Quantité & Montant H.T.\\
+				\hline
+				Références à rappeler: N\degre 005441/311292 &  &  & \\
+				Nature de l'intervention : Formation développement logiciels &&&\\
+				Nombre de jours hors site : 1 &&&\\
+				Nombre de jours sur site : 5 &&&\\
+				Période : du 3 septembre 2012 au 7 septembre 2012 &&&\\
+				Honoraires & 540,00 & 6,00 & 3240,00\\
+				\hline
+				TVA acquitée sur les encaissements &\multicolumn{2}{c|}{}&\\
+				 & \multicolumn{2}{|c|}{TOTAL H.T.} & 3240,00\\
+				Date de règlement : à réception & \multicolumn{2}{|c|}{TVA 19,6\%} & 635,04\\
+				Escompte 0\% &\multicolumn{2}{c|}{}&\\
+				\cline{4-4}\footnotesize{Pénalité pour retard de paiement : 1,5 fois le taux d'intérêt légal} & \multicolumn{2}{|c|}{NET À PAYER TTC} & 3875,04\\
+				\hline
+				\multicolumn{4}{|l|}{\footnotesize{Virements bancaires sur le compte AXA BANQUE}}\\
+				\multicolumn{4}{|l|}{\footnotesize{Établissement : 22578/code guichet/01226/N\degre compte:23289001500/clé RIB:36}}\\
+				\multicolumn{4}{|l|}{\footnotesize{Membre d'un centre de gestion agréé par l'administration fiscale, les réglements par chèques sont aceptés}}\\
+				\hline
+			\end{tabular}
+			\caption{Exemple de facture}
+		\end{table}
+		
+	\section{Les réductions}
+		On distingue deux catégories.
+		
+		\subsection{Les réductions commerciales}
+			\subsubsection{Les rabais}
+				Le rabais est une réduction pratiquée exceptionnellement sur le prix de vente des marchandises pour tenir compte d'un défaut de marchandise ou d'un retard de livraison.
+				
+			\subsubsection{Les remises}
+				La remise est une réduction accordée habituellement sur le prix de vente, pour tenir compte de la qualité du client ou de l'achat en grande quantité.
+				
+			\subsubsection{Les ristournes}
+				La ristourne est une réduction accordée sur un ensemble d'opérations avec le même client pendant une période donnée (par exemple, une ristourne trimestrielle). C'est un remboursement accordé par le fournisseur au client. On ne la trouve pas sur une facture normale, mais sur une facture d'avoir.
+				
+		\subsection{La réduction financière : l'escompte}
+			L'escompte est une réduction accordée aux clients qui payent leur facture avant le terme normale d'éxigibilité.
+			
+			\paragraph{Remarque} le montant calculé après les réductions commerciales s'appelle le net commercial; le montant calculé après l'escompte s'appelle le net financier.
+			
+			\paragraph{Exemple}~\\
+				\begin{table}[H]
+					\begin{center}
+						\begin{tabular}{rr}
+							Brut & 10 000,00 \\
+							Remise 10\% & 1000,00 \\
+							\cline{2-2} & 9000,00\\
+							Remise 5\% & 450,00 \\
+							\cline{2-2} Net commercial & 8550,00 \\
+							Escompte 2\% & 171,00 \\
+							\cline{2-2} Net financier & 8379,00
+						\end{tabular}
+					\end{center}
+					\caption{Exemple de réductions}
+				\end{table}
+
+	\section{La TVA (Taxe sur la Valeur Ajoutée)}
+		\subsection{Généralités}
+			La TVA est un impôt qui frappe non pas les revenus des ménages mais leur consommation. Elle n'est donc pas une charge pour l'entreprise puisque c'est le consommateur qui la subit. La base de calcul est constituée par toutes les sommes reçues ou à recevoir par le fournisseur. En conséquence, toute réduction de prix entrainera une diminution de la base imposable, c'est le cas des réductions commerciales et financières.
+			
+			En cas d'escompte, c'est le net financier qui constituera l'assiette\footnote{base de calcul de la TVA}. La TVA est ajoutée pour obtenir le prix TTC\footnote{Toutes Taxes Comprises}.
+			
+		\subsection{Les différents taux de TVA}
+			\begin{itemize}
+				\item Taux normal : 19,6\%
+				\item Taux réduit : 7\%
+				\item Taux super réduit : 5,5\%
+				\item Taux particulier : 2,1\%
+			\end{itemize}
+			
+			\paragraph{Exemple}~\\
+				\begin{table}[H]
+					\begin{center}
+						\begin{tabular}{rrl}
+							Brut & 18 000,00\\
+							Remise 10\% & 1800,00\\
+							\cline{2-2} & 16 200,00\\
+							Remise 5\% & 810,00 \\
+							\cline{2-2} Net commercial & 15 390,00 \\
+							Escompte 2\% & 307,80 \\
+							\cline{2-2} Net financier & 15082,20\\
+							TVA 5,5\% & 829,50\\
+							\cline{2-2} TTC & 15911,72
+						\end{tabular}
+					\end{center}
+					\caption{Exemple de calcul de TVA}
+				\end{table}
+				
+		\subsection{Mécanisme de la TVA}
+		
+		
+\appendix
+\newpage
+\part*{Index}
+\tableofcontents
+\newpage
+\listoftables
+\listoffigures
+
+\end{document}
