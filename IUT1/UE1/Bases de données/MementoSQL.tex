@@ -1,0 +1,383 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{hyperref}   % Sommaire PDF
+\usepackage{amsmath}    % Symboles mathématiques
+\usepackage{amssymb}    % Flèches barrées
+\usepackage{graphicx}   % Insertion d'images
+\usepackage{multirow}   % Fusion de cellules de tableaux
+\usepackage{float}      % Placement des figures
+\usepackage{xcolor}     % Couleurs
+\usepackage{eurosym}    % Symbole €
+\usepackage{listings}	% Listings
+\usepackage{alltt}		% Verbatim
+
+% En-tête, pied-de-page
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{Memento des ordres SQL*Plus}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+\begin{document}
+
+\title{Memento des ordres SQL*Plus}
+\date{}
+
+
+% Sommaire
+\newpage
+\renewcommand{\contentsname}{Sommaire}
+\maketitle
+
+% Début du document	
+\part{SQL comme langage de définition de données (LDD)}
+	Types syntaxiques des attributs : \texttt{VARCHAR2(n) CHAR[(n)] NUMBER[(n[,m)]] DATE LONG}
+	
+	\section{Création de relation}
+		\begin{alltt}
+			\begin{tabbing}
+				\emph{CREATE TABLE} \= <nom_table>\\
+				\> (nom_colonne1> <type1> [\emph{DEFAULT} <expression1>]\\
+				\>[, nom_colonne2> <type2> [\emph{DEFAULT} <expression2>]]\\
+				\>[, <contrainte1>[, <contrainte2>]])
+			\end{tabbing}
+			où :
+			\begin{tabbing}
+				<contraintei> = \emph{CONSTRAINT} <nom_contrainte> <spec_contrainte> [<etat>]\\
+				<spec_contrainte> = \= \emph{PRIMARY KEY}(<attribut1[, <attribut2>, ...])\\
+									\> | \= \emph{FOREIGN KEY}(<attribut1>[, <attribut2>,...]) \\
+									\> \> \emph{REFERENCES} <nom_relation_associée>(<attribut1>[, <attribut2>,...]) \\
+									\> \> [\emph{ON DELETE <CASCADE|SET NULL>}]\\
+									\> | \emph{CHECK}(<nom_attribut | expression> <condition>)\\
+				<etat>= \emph{ENABLE} | \emph{DISABLE}
+			\end{tabbing}
+			\emph{CREATE TABLE} <nom_relation> [(liste_attributs>, <liste_contraintes>)]
+			\emph{AS} <requete>
+		\end{alltt}
+		
+	\section{Ajout d'attributs et de contraintes dans une relation}
+		\begin{alltt}
+			\begin{tabbing}
+				\emph{ALTER TABLE} <nom_table>\\
+				\emph{ADD} (\=[nom_colonne1> <type1>] [\emph{DEFAULT} <expression1>] [\emph{NOT NULL}] [\emph{UNIQUE}]\\
+							\>[,<nom_colonne2> <type2> [\emph{DEFAULT} <expression2>] [\emph{NOT NULL}] [\emph{UNIQUE}]...]\\
+							\>[,<contrainte1> ...])
+			\end{tabbing}
+			où
+			\begin{tabbing}
+				<contraintei> = \emph{CONSTRAINT} <nom_contrainte> <spec_contrainte> [<etat>]\\
+				<spec_contrainte> = \= \emph{PRIMARY KEY}(<attribut1[, <attribut2>, ...])\\
+									\> | \= \emph{FOREIGN KEY}(<attribut1>[, <attribut2>,...]) \\
+									\> \> \emph{REFERENCES} <nom_relation_associée>(<attribut1>[, <attribut2>,...]) \\
+									\> \> [\emph{ON DELETE <CASCADE|SET NULL>}]\\
+									\> | \emph{CHECK}(<nom_attribut | expression> <condition>)\\
+				<etat>= \= \emph{ENABLE} | \emph{DISABLE} | \emph{VALIDATE} | \emph{NOVALIDATE} | \emph{ENABLE VALIDATE} | \emph{ENABLE NOVALIDATE}\\
+						\> | \emph{DISABLE VALIDATE} | \emph{DISABLE NOVALIDATE}
+			\end{tabbing}
+		\end{alltt}
+
+	\section{Modification de la définition d'un attribut}
+		\begin{alltt}
+			\begin{tabbing}
+				\emph{ALTER TABLE} <nom_table>\\
+				\emph{MODIFY} \= [(]<nom_colonne1> [<nouveau_type1>] [\emph{DEFAULT} <expression1>] [\emph{NOT NULL}]\\
+							  \> [,<nom_colonne2> [<nouveau_type2>] [\emph{DEFAULT} <expression2>] [\emph{NOT NULL}] ... [)]\\
+			\end{tabbing}
+		\end{alltt}
+		
+	\section{Modification de l'état d'une contrainte}
+		\begin{alltt}
+			\emph{ALTER TABLE} <nom_table>
+			\emph{MODIFY CONSTRAINT} <nom_contrainte> <etat_contrainte>
+		\end{alltt}
+		
+	\section{Suppression de contrainte dans une relation}
+		\begin{alltt}
+			\emph{ALTER TABLE} <nom_table> \emph{DROP CONSTRAINT} <nom_contrainte> [\emph{CASCADE}]
+			
+			\emph{ALTER TABLE} <nom_table> \emph{DROP UNIQUE}(<nom_attribut>) [\emph{CASCADE}]
+			
+			\emph{ALTER TABLE} <nom_table> \emph{DROP PRIMARY KEY} [\emph{CASCADE}]
+		\end{alltt}
+		
+	\section{Suppression d'attribut dans une relation}
+		\begin{alltt}
+			\emph{ALTER TABLE} <nom_table> \emph{SET UNUSED COLUMN} <nom_attribut>
+			
+			\emph{ALTER TABLE} <nom_table> \emph{SET UNUSED}(<nom_attribut1>[, <nom_attribut2> ...])
+			
+			\emph{ALTER TABLE} <nom_table> \emph{DROP COLUMN} <nom_attribut> [\emph{CASCADE CONSTRAINTS}]
+			
+			\emph{ALTER TABLE} <nom_table> \emph{DDROP}(<nom_attribut1>[, <nom_attribut2>, ...]) [\emph{CASCADE CONSTRAINTS}]
+			
+			\emph{ALTER TABLE} <nom_table> \emph{DROP UNUSED COLUMNS}
+		\end{alltt}
+		
+	\section{Suppresion de relation}
+		\begin{alltt}
+			\emph{DROP TABLE} <nom_table> [\emph{CASCADE CONSTRAINTS}]
+		\end{alltt}
+		
+	\section{Création/suppression de synonyme et changement du nom d'une relation}
+		\begin{alltt}
+			\emph{CREATE} [\emph{PUBLIC}] \emph{SYNONYM} <nom_synonyme> \emph{FOR} <nom_objet>
+			
+			\emph{DROP SYNONYM} <nom_synonyme>
+			
+			\emph{RENAME} <ancien_nom> \emph{TO} <nouveau_nom>
+		\end{alltt}
+		
+	\section{Gestion de séquences}
+		\begin{alltt}
+			\begin{tabbing}
+				\emph{CREATE SEQUENCE} <nom_sequence> \= [\emph{START WITH} <valeur_initiale>]\\
+													  \> [\emph{INCREMENT BY} <valeur_increment>]\\
+													  \> [\emph{MAXVALUE} <valeur_maximale> | \emph{NOMAXVALUE}]\\
+													  \> [\emph{MINVALUE} <valeur_minimale> | \emph{NOMINVALUE}]\\
+													  \> [\emph{CYCLE} | \emph{NOCYCLE}]
+			\end{tabbing}
+			
+			\emph{DROP SEQUENCE} <nom_sequence>
+			
+			\begin{tabbing}
+				\emph{ALTER SEQUENCE} <nom_sequence> \= [\emph{INCREMENT BY} <valeur_increment]\\
+													 \> [\emph{MAXVALUE} <valeur_maximale> | \emph{NOMAXVALUE}]\\
+													 \> [\emph{MINVALUE} <valeur_minimale> | \emph{NOMINVALUE}]\\
+													 \> [\emph{CYCLE} | \emph{NOCYCLE}]
+			\end{tabbing}
+		\end{alltt}
+		
+	\section{Index sur les relations}
+		\begin{alltt}
+			\emph{CREATE} [\emph{UNIQUE} | \emph{BITMAP}] \emph{INDEX} <nom_index>
+			\emph{ON} <nom_table> ([<nom_colonne1>[, <nom_colonne2>, ...])
+			
+			\emph{ALTER TABLE} <nom_index> \emph{RENAME TO} <nouveau_nom>
+			
+			\emph{DROP INDEX} <nom_index>
+		\end{alltt}
+		
+	\section{Principales tables systèmes Oracle}
+		\begin{alltt}
+			\begin{tabbing}
+				ALL_CONS_COLUMNS \= (OWNER, CONSTRAINT_NAME, TABLE_NAME, COLUMN_NAME,...)\\
+				ALL_CONSTRAINTS \> (OWNER, CONSTRAINT_NAME, CONSTRAINT_TYPE, TABLE_NAME, SEARCH_CONDITION,...)\\
+				ALL_INDEXES \> (OWNER, INDEX_NAME, INDEX_TYPE, TABLE_OWNER, \\
+							\> TABLE_NAME, TABLE_TYPE, UNIQUENESS, COMPRESSION)\\
+				ALL_OBJECTS \> (OWNER, OBJECT_NAME, OBJECT_ID, DATA_OBJECT_ID, OBJECT_TYPE, CREATED, ...)\\
+				ALL_SEQUENCES \> (SEQUENCE_OWNER, SEQUENCE_NAME, MIN_VALUE, MAX_VALUE, INCREMENT, CYCLE_FLAG)\\
+				ALL_SYNONYMS \> (OWNER, SYNONYM_NAME, TABLE_OWNER, TABLE_NAME)\\
+				ALL_TAB_COLUMNS \> (OWNER, TABLE_NAME, COLUMN_NAME, DATA_TYPE, DATA_LENGHT)\\
+				ALL_TABLES \> (OWNER, TABLE_NAME, TABLESPACE_NAME)\\
+				ALL_VIEWS \> (OWNER, VIEW_NAME, TEXT_LENGTH, TEXT,...)
+			\end{tabbing}
+		\end{alltt}
+		
+		Les tables de même nom préfixées par \texttt{USER\_} ont la même structure hormis l'attribut \texttt{OWNER}, et décrivent seulement les composants du schéma de l'utilisateur.
+		
+		\paragraph{Pseudo-colonnes}
+			\begin{alltt}
+				<nom_sequence>.\emph{CURRVAL}, <nom_sequence>.\emph{NEXTVAL}, \emph{LEVEL}, \emph{ROWID}, \emph{ROWNUM}, \emph{USER}
+			\end{alltt}
+			
+\part{SQL comme langage de manipulation de données (LMD)}
+	\section{Requêtes}
+		\begin{alltt}
+			\begin{tabbing}
+				<requete> = \= \emph{SELECT} <liste_resultat | * >\\
+							\> \emph{FROM} <liste_relations>\\
+							\> [\emph{WHERE} <liste_conditions>]\\
+							\> [\emph{GROUP BY} <liste_attributs_de_partitionnement>\\
+							\> [\emph{HAVING} <liste_conditions_de_partitionnement>]]\\
+							\> [\emph{ORDER BY} <liste_attributs_a_trier>]
+			\end{tabbing}
+		\end{alltt}
+		où :
+		\begin{alltt}
+			\begin{tabbing}
+				liste_resultat = \= [\emph{DISTINCT}] <attribut1 | expr1 | requete1> [<alias1>] \\
+								 \> [,<attribut2 | expr2 | requete2> [<alias2>] ...\\
+				liste_relations = \= <relation1 | vue1 | requete1> [alias1]\\
+								  \> [, <relation2 | vue 2 | requete2> |alias2]...\\
+				liste_conditions = [\emph{NOT}] <condition1> [\emph{AND} | \emph{OR} <condition2> ...]
+			\end{tabbing}
+		\end{alltt}
+		
+		Condition de sélection :
+		\begin{alltt}
+			<condition1> = <attribut [(+)] | expression> <comparateur | predicat_conditionnel> <constante>\\
+			\begin{tabbing}
+				<predicat_cond> = \= \emph{IS NULL} | \emph{IN} | \emph{BETWEEN} ... \emph{AND} | \emph{LIKE} \\
+								  \> | \emph{IS NOT NULL} | \emph{NOT IN} | \emph{NOT BETWEEN} | \emph{NOT LIKE}
+			\end{tabbing}
+		\end{alltt}
+		
+		Condition de jointure prédicative :
+		\begin{alltt}
+			<conditionj> = <attribut1[(+)] | expr1> <comparateur> <attribut2[(+)] | expr2 >
+		\end{alltt}
+		
+		Condition de jointure imbriquée :
+		\begin{alltt}
+			\begin{tabbing}
+				<conditionji> = \= <expression1>[, <expression2>,...] \(\theta\) (<requete>)\\
+								\> | <expression1>[, <expression2>,...] \(\theta\) \emph{ABY} | \emph{IN} (<requete>)\\
+								\> | <expression1>[, <expression2>,...] \(\theta\) \emph{ANY} (<requete>)
+			\end{tabbing}
+		\end{alltt}
+		
+	\section{Calculs verticaux (fonctions aggrégatives)}
+		\begin{alltt}
+			<nom_fonction> ([\emph{DISTINCT}] <nom_colonne>)
+		\end{alltt}
+		où :
+		\begin{alltt}
+			<nom_fonction> = \emph{SUM} | \emph{AVG} | \emph{COUNT} | \emph{MAX} | \emph{MIN} | \emph{STDDEV} | \emph{VARIANCE}
+		\end{alltt}
+		
+	\section{Tri des résultats}
+		\begin{alltt}
+			\emph{ORDER BY} <expression1> [\emph{ASC} | \emph{DESC}] [\emph{NULLS FIRST} | \emph{NULLS LAST}] [,<expression2> ...]
+		\end{alltt}
+		
+	\section{Opérateurs ensemblistes}
+		\begin{alltt}
+			<requete1>
+			\emph{UNION} | \emph{INTERSECT} | \emph{MINUS}
+			<requete2>
+		\end{alltt}
+		
+	\section{Test d'absence ou d'existence de données}
+		\begin{alltt}
+			\begin{tabbing}
+				\emph{SELECT} \= <liste_attributs>\\
+				\emph{FROM}   \> <relation1> [<alias1>] [,<relation2> [<alias2>] ...]\\
+				\emph{WHERE} \> [<liste_conditions> \emph{AND} | \emph{OR}] [\emph{NOT}] \emph{EXISTS} (<sous_requete>)
+			\end{tabbing}
+		\end{alltt}
+		
+	\section{Classifications ou partitionnement}
+		\begin{alltt}
+			\begin{tabbing}
+				\emph{ORDER BY}  \=<colonne1> [, <colonne2>,...]\\
+				\emph{HAVING} 	\><liste_conditions_classe>
+			\end{tabbing}
+		\end{alltt}
+		
+	\section{Recherche dans une arborescence}
+		\begin{alltt}
+			\begin{tabbing}
+				\emph{SELECT} \= <colonne1> [, <colonne2>, ...]\\
+				\emph{FROM}   \> <table> [<alias>]\\
+				[\emph{WHERE} \> <liste_conditions>]\\
+				\emph{CONNECT BY} [\emph{PRIOR}] <colonne1> = [\emph{PRIOR}] <colonne2>\\
+				[\emph{AND}	\> <condition_hierarchique>]\\
+				[\emph{START WITH}\> <condition_depart>]\\
+				[\emph{ORDER BY LEVEL}]
+			\end{tabbing}
+		\end{alltt}
+		
+	\section{Mise à jour des données}
+		\begin{alltt}
+			\begin{tabbing}
+				\emph{UPDATE} \= <nom_table>\\
+				\emph{SET} \> <nom_colonne1> = <expression1> [, <nom_colonne2> = <expression2>,...]\\
+				[\emph{WHERE} \> <condition_selection>]
+			\end{tabbing}
+			\begin{tabbing}
+				\emph{UPDATE} \= <nom_table>\\
+				\emph{SET} \> (<nom_colonne1>[, <nom_colonne2>, ...]) = (\emph{SELECT} \= <colonne1>[,<colonne2>,...]\\
+					\> \> \emph{FROM} ... \emph{WHERE} ...)\\
+				[\emph{WHERE} \> <condition_selection>]
+			\end{tabbing}
+			\begin{tabbing}
+				\emph{INSERT INTO} \= <nom_table> [(<liste_attributs>]\\
+				\emph{VALUES} \> (<valeur1>[,<valeur2>,...])
+			\end{tabbing}
+			\emph{INSERT INTO} <nom_table> [(<liste_attributs>)] <requête>
+			
+			\emph{DELETE FROM} <nom_table> \emph{WHERE} <condition>
+		\end{alltt}
+\part{SQL comme langage de contrôle des données (LCD)}
+	\section{Gestion des transactions}
+		\begin{alltt}
+			\emph{COMMIT, ROLLBACK}
+		\end{alltt}
+		
+	\section{Création et suppression de roles et d'utilisateurs}
+		\begin{alltt}
+			\emph{CREATE ROLE} <nom_role> [\emph{IDENTIFIED BY} <mot_de_passe>]
+			
+			\emph{ALTER ROLE} <nom_role> [\emph{IDENTIFIED BY} <nouveau_mot_de_passe>]
+			
+			\emph{DROP ROLE} <nom_role>
+			\begin{tabbing}
+				\emph{CREATE USER} \= <nom_utilisateur> [\emph{IDENTIFIED BY} <mot_de_passe>]\\
+				\emph{DEFAULT TABLESPACE} <nom_tablespace>\\
+				\emph{QUOTA} \> <taille> \emph{PROFILE} <nom_profil>
+			\end{tabbing}
+			\emph{ALTER USER} <nom_utilisateur> [\emph{IDENTIFIED BY} <nouveau_mot_de_passe>]
+			
+			\emph{DROP USER} <nom_utilisateur>
+		\end{alltt}
+		
+	\section{Attribution ou suppression de privilèges}
+		\begin{alltt}
+			\begin{tabbing}
+				\emph{GRANT} \= <systeme_privileges | \emph{ALL} \emph{[PRIVILEGES}]>\\
+				\emph{TO} \> <liste_role_utilisateur | \emph{PUBLIC}>\\
+				[\emph{WITH ADMIN OPTION}]
+			\end{tabbing}
+		\end{alltt}
+		
+		où :
+		\begin{alltt}
+			\begin{tabbing}
+				<systeme_privilege> = \= \emph{CREATE ROLE} | \emph{CREATE SEQUENCE} | \emph{CREATE SESSION} | \emph{CREATE SYNONYM}\\
+				\>  | \emph{CREATE PUBLIC} | \emph{CREATE TABLE} | \emph{CREATE USER} | \emph{CREATE VIEW}
+			\end{tabbing}
+		\end{alltt}
+		
+		\begin{alltt}
+			\begin{tabbing}
+				\emph{GRANT} \= <liste_droits>\\
+				\emph{TO} \> <nom_composant>\\
+				[\emph{WITH GRANT OPTION}]
+			\end{tabbing}
+		\end{alltt}
+		
+		où:
+		\begin{alltt}
+			\begin{tabbing}
+				<liste_droits> =\= \emph{SELECT} | \emph{INSERT} | \emph{UPDATE} [nom_colonne1,...] | \emph{DELETE} | \emph{ALTER} \\
+							\> | \emph{INDEX} | \emph{REFERENCES} | \emph{ALL} [\emph{PRIVILIGES}]
+			\end{tabbing}
+		\end{alltt}
+		
+		\begin{alltt}
+			\begin{tabbing}
+				\emph{GRANT} \= <liste_roles_attribues>\\
+				\emph{TO} \> <liste_roles_utilisateurs>\\
+				[\emph{WITH ADMIN OPTION}]
+			\end{tabbing}
+		\end{alltt}
+		
+	\section{Gestion de vues}
+		\begin{alltt}
+			\emph{CREATE} [\emph{OR REPLACE}] [[\emph{NO}] \emph{FORCE}]
+			\emph{VIEW} <nom_vue> [(alias1[,alias2,...])]
+			\emph{AS} <requete>
+			[\emph{WITH CHECK OPTION} | \emph{WITH READ ONLY}]
+			
+			\emph{ALTER VIEW} <nom_vue> \emph{COMPILE}
+			
+			\emph{DROP VIEW} <nom_vue>
+		\end{alltt}
+\end{document}
