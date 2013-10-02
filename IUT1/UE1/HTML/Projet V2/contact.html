@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<title>Heavy Fuckin' Metal</title>
+
+	<link rel="stylesheet" type="text/css" media="screen" href="style/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style/header.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style/footer.css" />
+</head>
+<body>
+    <div id="header" >
+        <a href="index.html" title="Accueil" class="header-title" >
+            <img id="header-logo" alt="Logo" title="Logo" src="logo.png" />
+            <span id="header-title" >Heavy Fuckin' Metal</span>
+        </a>
+
+        <div id="horiz-menu" > 
+            <ul> 
+                <li><a href="index.html" title="Sommaire" >Sommaire</a></li>
+                <li><a href="origines.html" title="Origines" >Origines</a></li>
+                <li><a href="diversification.html" title="Diversification" >Diversification</a></li>
+                <li><a href="controverses.html" title="Controverses" >Controverses</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content" >
+        <h1>Contact</h1>
+        <p>Une erreur à signaler ? Une précision à donner ?</p>
+
+        <form actio="#" method="POST" >
+            <table>
+                <tr>
+                    <td>
+                        <label for="email" >Adresse e-mail</label>
+                    </td>
+                    <td>
+                        <input type="text" name="email" id="email" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="cat" >Catégorie</label>
+                    </td>
+                    <td>
+                        <select name="cat" id="cat" >
+                            <option value="err" >Erreur</option>
+                            <option value="prec" >Précision</option>
+                            <option value="maj" >Mise à jour</option>
+                            <option value="mdm" >Menace de mort</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="sujet" >Sujet</label>
+                    </td>
+                    <td>
+                        <input type="text" name="sujet" id="sujet" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="msg" >Message</label></td>
+                    <td><textarea id="msg" name="msg" rows="15" cols="100" ></textarea></td>
+                </tr>
+            </table>
+
+            <input type="checkbox" name="cinq" id="cinq" checked="checked" />
+            <label for="cinq" >Le formulaire est composé d'au moins 5 champs</label> <br />
+
+            <input type="submit" value="Let's Rock!" />
+        </form>
+
+        <br class="clear" />
+    </div>
+
+    <div id="footer" >
+        Heavy Fuckin' Metal - Site et contenu par Alain DRILLON<br />
+        <a href="contact.html" title="Une erreur à signaler ? Une précision à donner ?" >Contact</a> <br />
+        Sources : <a href="http://fr.wikipedia.org/wiki/Heavy_Metal" title="Wikipédia" >Wikipedia</a><br />
+    </div>
+</body>
+</html>

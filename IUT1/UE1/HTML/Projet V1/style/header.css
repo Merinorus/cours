@@ -1,0 +1,20 @@
+#header, #header a
+{
+    padding:15px;
+    font-size:35px;
+    color:#fefefe;
+    text-decoration:none;
+    background-color:#bd1923;
+    height:155px;
+}
+
+#header #header_title
+{
+    margin-top:50px;
+    margin-left:15px;
+}
+
+#header #header_logo
+{
+    float:left;
+}

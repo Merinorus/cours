@@ -1,0 +1,38 @@
+#horiz_menu
+{
+    border-top:1px solid #3d0a0d;
+    background-color:#bd1923;
+    padding-left:15px;
+    clear:left;
+}
+
+.horiz_menu_item
+{
+    display:inline;
+    font-size:18px;
+    margin-right:10px;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.horiz_menu_item a
+{
+    text-decoration:none;
+    color:#fefefe;
+}
+
+.horiz_menu_item:hover, .selected_horiz_menu_item
+{
+    background-color:#fefefe;
+}
+
+.horiz_menu_item:hover a
+{
+    color:#bd1923;
+}
+
+#selected_horiz_menu_item, #selected_horiz_menu_item a
+{
+    background-color:#fefefe;
+    color:#bd1923;
+}

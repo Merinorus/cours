@@ -1,0 +1,58 @@
+#header
+{
+    background-color:#b31717;
+    color:#dedede;
+    padding:15px;
+    padding-bottom:0px;
+}
+
+#header-title, #header-title:hover, #header-title:visited, #header-title:focus
+{
+    color:#dedede;
+    text-decoration:none;
+    margin-top:25px;
+    margin-left:175px;
+}
+
+#header #header-title
+{
+    display:block;
+    font-size:35px;
+}
+
+#header #header-logo
+{
+    float:left;
+    width:150px;
+}
+
+#header #horiz-menu
+{
+    margin-top:75px;
+    text-align:center;
+    clear:both;
+}
+
+#header #horiz-menu ul li a
+{
+    color:#dedede;
+}
+
+#header #horiz-menu ul
+{
+    list-style-type:none;
+}
+
+#header #horiz-menu ul li
+{
+    display:inline;
+    text-align:center;
+    padding-right:12px;
+    padding-left:12px;
+}
+
+#header #horiz-menu li:hover, #header #horiz-menu li:hover a
+{
+    color:#b31717;
+    background-color:#dedede;
+}
