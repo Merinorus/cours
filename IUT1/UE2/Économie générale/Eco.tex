@@ -1,0 +1,126 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{eurosym}    % Symbole euro
+\usepackage{hyperref}   % Sommaire PDF + liens
+\usepackage{listings}   % Listings
+\usepackage{framed}     % Cadres
+\usepackage{graphicx}	% Images
+
+% En-tête, pied-de-page
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+\lstset{
+    frame=single,
+    breaklines
+}
+
+\begin{document}
+    \title{Économie générale}
+    \author{Christine MAKSSOUD}
+    \date{}
+
+% Page de garde + page blanche
+\maketitle
+\setcounter{page}{0} \thispagestyle{empty} % Ne pas numéroter la page de garde + pas d'en-tête/pied-de-page
+\newpage
+\setcounter{page}{2} % Commencer la numérotation à 2
+
+\newpage
+~\\
+\renewcommand{\contentsname}{Sommaire}
+\tableofcontents
+
+% Début du document
+\newpage
+\part{L'économie et son domaine}
+	Les grands problèmes mondiaux du moment semblent à priori par leur ampleur dépasser chacun d'entre nous. Mais comme ils affectent directement notre vie quotidienne, ils nous conduisent à nous intéresser à l'économie. Les fondements de la connaissance économique s'appuient sur trois éléments :
+	\begin{itemize}
+		\item l'analyse de l'objet de la science économique
+		\item la présentation de la pensée économique
+		\item l'examen des systèmes économiques
+	\end{itemize}
+	
+	\section{Méthodes d'analyse de la science économique}
+		La science économique utilise trois méthodes différentes d'analyse et d'explication :
+		\begin{itemize}
+			\item la micro-économie : c'est l'analyse des comportements des individus ou des entreprises et de leurs choix dans le domaine de la production, de la consommation, de la fixation des prix et des revenus;
+			\item la macro-économie : c'est l'analyse des comportements collectifs, on s'intéresse aux quantités globales (PIB, investissements, consommation) au niveua d'une région, d'un pays ou groupe de pays et à leurs relations;
+			\item la mass-économie : c'est l'analyse des comportements au niveau des grands groupes ou des branches industrielles qui détiennent suffisamment de pouvoir pour peser sur la destinée de l'économie nationale (syndicats, lobbys,...)
+		\end{itemize}
+		
+	\section{Les courants de la pensée économique}
+		Trois courants de pensée jalonnent l'histoire de la pensée économique :
+		\subsection{Le courant libéral}
+			Il repose sur différents principes :
+			\begin{itemize}
+				\item l'individualisme : c'est l'époque de Rousseau qui dit que l'Homme est naturellement bon. L'Homme recherche la satisfaction optimale de son intérêt. La notion de droit à la proprieté privée est mise à avant. Les néo-classiques ont une approche macro-économique;
+				\item l'équilibre : c'est la recherche de l'intérêt particulier qui conduit à la réalisation de l'intérêt général. Le marché possède ses propres éléments régulateurs si son fonctionnement ne connait pas d'entrave. Si on laisse fonctionner les entreprises et les particuliers, il va s'établir une autorégulation du système;
+				\item la liberté économique : l'état ne doit pas intervenir dans l'économie mais doit veiller au respect de la liberté économique, c'est l'état-gendarme. Les libéraux ont développé ce principe au niveau international en prônant le libre échange.
+			\end{itemize}
+			
+			Le courant libéral est représenté par :
+			\begin{itemize}
+				\item le courant classique (fin XVIII\up{e}) suite à la révolution industrielle en Angleterre (A. Smith, D. Ricardo, J. B. Soy)
+				\item le courant néo-classique (fin XIX\up{e}) (L. Walras, A. Marshall, V. Paredo)
+				\item le courant néo-classique contemporain (D. Friedmann, J. Budhower, A. Luffer)
+			\end{itemize}
+			
+		\subsection{Le courant marxiste}
+			Les théories marxistes constituent une réaction idéologique au problème posé par l'exploitation des ouvriers dans les usines des pays européens au XIX\up{e} siècle. La condition ouvrière se détériore, les conditions de travail sont inhumaines. Le paysage social se bouleverse, la noblesse et le clergé diminuent. Deux lasses antagonistes apparaissent : les bourgeois (capitalistes) propriétaires des moyens de production, et les prolétaires (travailleurs) propriétaires de leur seule force de travail. Carl Marx démontre que, par ses contradictions, le capitalisme est appelé à disparaître. Le courant marxiste repose sur les fondements suivants :
+			\begin{itemize}
+				\item la notion de plus-value : le travail humain est seule source de valeur. En exploitant ses ouvriers, le capitaliste va dégager une plus-value (profit) en les sous-payant. Il fait une marge plus importante. C'est la différence entre la valeur créée par la force de travail des ouvriers et la valeur que cette force de travail coute aux capitalistes;
+				\item les crises du capitalisme : pour augmenter cette plus-value, les capitalistes vont investir dans l'appareil de production en substituant le capital au travail. Il s'ensuit une crise de surproduction et une baisse de profit par manque de consommation;
+				\item la propriété collective des moyens de production : la propriété des moyens de production doit être oubliée et doit être remplacée par une appropriation collective.
+			\end{itemize}
+			
+		\subsection{Le courant keynésien}
+			Ce courant prend naissance dans les années 1930. Il y a une baisse de la production, une augmentation des faillites, une augmentation du chômage sans protection, sans allocations,... Cette crise s'étend à tous les pays. Keyn, économiste anglais, développe l'essentiel de sa pensée autour de trois axes :
+			\begin{itemize}
+				\item analyse macro-économique : il étudie les relations entre les grandes variables économiques (production, consommation, emploi). Donc comportement collectif plutôt qu'individuel:
+				\item l'intervention de l'état : l'état doit intervenir en matière économique et sociale, c'est un état-providence, pour pallier les défaillances du marché en mettant en œuvre la politique budgétaire et relancer la demande;
+				\item la demande effective : la production résulte de la demande effective, c'est à dire la demande anticipée par les entreprises.
+			\end{itemize}
+			
+	\section{Les systèmes économiques d'organisation économique de la rareté}
+		À chaque courant de pensée économique peut être associée une force d'organisation économique dominante :
+		\begin{itemize}
+			\item à la doctrine libérale, on attribue le capitalisme : propriété privée des moyens de production, rôle du marché avec de la concurrence, initiative individuelle, recherche de réinvestissement systématique du profit;
+			\item à la doctrine marxiste, on attribue le socialisme : intérêt général, plan sur le marché, secteur collectivisé, progrès social;
+			\item à l'approche keynésienne, on va associer le régime mixte : régulation du marché, intervention active de l'état par le biais d'entreprises publiques en particulier.
+		\end{itemize}
+		
+		Si les systèmes capitalistes et socialistes se sont partagés par l'intermédiaire des économistes et des hommes pendant plus d'un siècle, on peut dire qu'aujourd'hui, seul le système capitaliste domine les économies de la planète, le socialisme économique ayant échoué dans sa volonté de construire une société idéale.
+		
+		\begin{figure}[h!]
+			\begin{center}
+				\begin{tabular}{|r|p{5cm}|p{5cm}|}
+					\hline
+					\textbf{Fondements} & \textbf{Capitalisme} & \textbf{Socialisme} \\
+					\hline
+					Juridique			& Propriété privée des moyens de production & Propriété collective des moyens de production \\
+					Économique			& Économie décentralisée basée sur le marché, l'État n'intervient que pour permettre le libre jeu de la concurrence & Économie planifiée, l'économie est dirigée par l'état \\
+					Idéologique			& Recherche du profit & Satisfaction de la collectivité \\
+					Politique			& Démocratie libre, plusieurs partis et classes sociales & Parti unique proche de la dictature, suppression des classes sociales \\
+					\hline
+				\end{tabular}
+				\caption{Fondements du capitalisme et du socialisme}
+			\end{center}
+		\end{figure}
+		
+		Le capitalisme a évolué, le rôle de l'état n'a pas cessé d'augmenter, d'état gendarme il est devenu état-providence car il intervient dans les domaines sociaux et économiques.
+
+\newpage
+\part{Le problème économique}
+		
+\end{document}
