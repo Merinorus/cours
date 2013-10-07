@@ -49,7 +49,7 @@
 % Début du document
 \newpage
 \part{Relation d'ordre}
-    \paragraph{Définition}
+    \section{Définition}
         Soit $E$ un ensemble et $R$ une relation linéaire entre éléments de $E$. $R$ est un ordre sur $E \Leftrightarrow R$ est réflexive, antisymétrique et transitive.
         \begin{itemize}
             \item réflexive : $\forall a\in E,aRa$
@@ -57,4 +57,31 @@
             \item transitive : $\forall a,b,c\in E,aRc$
         \end{itemize}
 
+        \paragraph{Remarque} Si pour tous $a,b\in E$ on a $(aRb)\lor(bRa)$, l'ordre est total. Sinon, l'ordre est partiel (certains éléments ne sont pas « comparables » par $R$ car on a ni $(aRb)$ ni $(bRa)$.
+
+
+        \paragraph{Exemples}
+            \begin{enumerate}
+                \item Soit $E\neq\emptyset$ : l'inclusion définit un ordre (partiel) sur $P(E)$. $A\subset B\Leftrightarrow\forall x,x\in A\Leftrightarrow x\in B$
+
+                On n'a ni $A\subset B$, ni $B\subset A$, l'ordre est partiel. D'autre part, on a bien :
+                \begin{itemize}
+                    \item $A\subset A$ pour toute $A\in P(E), C$ est réflexive
+                    \item $(A\subset B$ et $B\subset A)\Rightarrow A=B$ : c'est la définition même de $A=B$
+                    \item $(A\subset B$ et $B\subset C)\Rightarrow A\subset C$
+                \end{itemize}
+
+                $C$ est asymétrique, $\subset$ est donc un ordre de $P(E)$.
+
+                \item La relation « $a$ divise $b$ » définit un ordre partiel sur $\mathbb{N}^*$ (notation : $a|b$). En effet, pour tout $a\neq 0, a|a$ donc $|$ est réflexive. $(a|b)$ et $(b|a)\Rightarrow a=b$ donc $|$ est asymétrique. $(a|b)$ et $(b|a)\Rightarrow a|c$ donc $|$ est transitive. Par exemple, $5|15$ mais $\lnot(4|15)$ : l'ordre est donc partiel.
+                \item Représenter la relation $a|b$ sur l'ensemble des diviseurs de 30, puis 60.
+                    \begin{itemize}
+                        \item Les diviseurs de 30 : ${1,2,3,5,6,10,15,30}$
+                        \item Les diviseurs de 60 : ${1,2,3,4,5,6,10,12,15,20,30,60}$
+                    \end{itemize}
+
+                Sur $\mathbb{N}$, la relation $\leq$ usuelle définit un ordre total.
+            \end{enumerate}
+
+    \section{Éléments remarquables liés à une relation d'ordre}
 \end{document}
