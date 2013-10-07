@@ -589,7 +589,7 @@ etudiant.NOM_ET:=\emph{UPPER}(etudiant.NOM_ET)
                     \item du LCD : \emph{\texttt{GRANT}, \texttt{REVOQUE}}
                 \end{itemize}
 
-            \subsection{Chronologie d'un trigger}
+            \subsection{Chronologie d'un trigger}\index{BEFORE}\index{AFTER}
                 \begin{figure}[H]
                     \begin{tabular}{*{4}{p{4cm}}}
                         Détection de l'ordre SQL déclencheur du trigger & Exécution du trigger de type \emph{\texttt{BEFORE}} & Exécution de l'ordre SQL & Exécution du trigger de type \emph{\texttt{AFTER}} \\
@@ -618,7 +618,7 @@ etudiant.NOM_ET:=\emph{UPPER}(etudiant.NOM_ET)
                     \caption{Chronologie d'un trigger orienté tuple de type \emph{\texttt{BEFORE}}}
                 \end{figure}
 
-            \subsection{Informations véhiculées par un évènement}
+            \subsection{Informations véhiculées par un évènement}\index{NEW}\index{OLD}
                 Il est possible d'utiliser \emph{\texttt{OLD}} et \emph{\texttt{NEW}} pour accéder à l'ancien et au nouveau tuple manipulé par un trigger LMD orienté tuple.
 
                 \paragraph{Exemple}
@@ -641,7 +641,7 @@ etudiant.NOM_ET:=\emph{UPPER}(etudiant.NOM_ET)
 
                 Pour \emph{\texttt{DELETE}}, \emph{\texttt{OLD}}\texttt{.attribut}=valeur avant la suppression, et \emph{\texttt{NEW}}\texttt{.attribut=}\emph{\texttt{NULL}}.
 
-            \subsection{Partie Condition}
+            \subsection{Partie Condition}\index{WHEN}
                 Pour les triggers LMD orientés tuples, où une seule relation est concernée, les conditions (dans \emph{\texttt{WHEN}}) sont des combinaisons booléennes de conditions simples (comme les conditions de \emph{\texttt{WHERE}}).
 
                 \paragraph{Remarque} pas de jointure imbriquée
@@ -655,7 +655,7 @@ etudiant.NOM_ET:=\emph{UPPER}(etudiant.NOM_ET)
                     \caption{Chronologie de la partie condition}
                 \end{figure}
 
-            \subsection{Partie Action}
+            \subsection{Partie Action}\index{INSERTING}\index{DELETING}\index{UPDATING}
                 \begin{itemize}
                     \item Jamais de \emph{\texttt{COMMIT}} ou de \emph{\texttt{ROLLBACK}} car le trigger est déclenché au cours d'une transaction qu'il n'a jamais le droit de terminer ou de défaire
                     \item Pour les triggers LMD orientés tuples, on ne peut pas faire de mise à jour sur la relation concernée (table en mutation)
@@ -669,7 +669,7 @@ etudiant.NOM_ET:=\emph{UPPER}(etudiant.NOM_ET)
                     \end{figure}
                 \end{itemize}
 
-            \subsection{Syntaxe}
+            \subsection{Syntaxe}\index{TRIGGER}
                 \begin{alltt}
                     \begin{tabbing}
 \emph{CREATE} [\emph{OR REPLACE}] \emph{TRIGGER} <nom_trigger>\\
