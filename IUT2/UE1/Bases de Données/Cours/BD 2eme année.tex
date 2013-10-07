@@ -310,19 +310,19 @@ Le langage PL/SQL (Procedural Language/Structured Query Language) est un langage
             \paragraph{Exemple : on déclare Et2}
                 \begin{alltt}
                     \begin{tabbing}
-                        nom ETUDIANT_NOM\%\emph{TYPE};\\
-                        prenom ETUDIANT_PRENOM\%\emph{TYPE};\\
-                        -- OU\\
-                        etudiant Et2\%\emph{ROWTYPE};
-                        \\
-                        \emph{FETCH} Et2 \emph{INTO} nom, prenom;\\
-                        -- OU\\
-                        \emph{FETCH} Et2 \emph{INTO} etudiant;\\
-                        \\
-                        nom:=\emph{UPPER}(nom)\\
-                        prenom:=\emph{PRENOM}(prenom)\\
-                        -- OU\\
-                        etudiant.NOM_ET:=\emph{UPPER}(etudiant.NOM_ET)
+nom ETUDIANT_NOM\%\emph{TYPE};\\
+prenom ETUDIANT_PRENOM\%\emph{TYPE};\\
+-- OU\\
+etudiant Et2\%\emph{ROWTYPE};
+\\
+\emph{FETCH} Et2 \emph{INTO} nom, prenom;\\
+-- OU\\
+\emph{FETCH} Et2 \emph{INTO} etudiant;\\
+\\
+nom:=\emph{UPPER}(nom)\\
+prenom:=\emph{PRENOM}(prenom)\\
+-- OU\\
+etudiant.NOM_ET:=\emph{UPPER}(etudiant.NOM_ET)
                     \end{tabbing}
                 \end{alltt}
 
@@ -336,30 +336,30 @@ Le langage PL/SQL (Procedural Language/Structured Query Language) est un langage
             \paragraph{Exemple : on utilise le curseur Et2 et la variable enregistrement}
                 \begin{alltt}
                     \begin{tabbing}
-                        \emph{BEGIN}\=\\
-                            \>\emph{OPEN} \= Et2;\\
-                            \>\emph{FETCH}\> Et2 \emph{INTO} etudiant;\\
-                            \>\emph{WHILE}\> Et2\%\emph{FOUND LOOP}\\
-                                \>\><instructions>\\
-                                \>\>\emph{FETCH} Et2 \emph{INTO} etudiant;\\
-                            \>\emph{END LOOP};\\
-                            \>\emph{CLOSE} Et2;\\
-                        \emph{END};
+\emph{BEGIN}\=\\
+    \>\emph{OPEN} \= Et2;\\
+    \>\emph{FETCH}\> Et2 \emph{INTO} etudiant;\\
+    \>\emph{WHILE}\> Et2\%\emph{FOUND LOOP}\\
+        \>\><instructions>\\
+        \>\>\emph{FETCH} Et2 \emph{INTO} etudiant;\\
+    \>\emph{END LOOP};\\
+    \>\emph{CLOSE} Et2;\\
+\emph{END};
                     \end{tabbing}
                 \end{alltt}
 
             \paragraph{Exemple : avec une boucle \emph{\texttt{EXIT WHEN}}}
                 \begin{alltt}
                     \begin{tabbing}
-                        \emph{BEGIN}\=\\
-                            \>\emph{OPEN} \= Et2;\\
-                            \>\emph{LOOP}\\
-                                \>\>\emph{FETCH} Et2 \emph{INTO} etudiant;\\
-                                \>\><instructions>\\
-                                \>\>\emph{EXIT WHEN} Et2\%\emph{NOTFOUND};\\
-                            \>\emph{END LOOP};\\
-                            \>\emph{CLOSE} Et2;\\
-                        \emph{END};
+\emph{BEGIN}\=\\
+    \>\emph{OPEN} \= Et2;\\
+    \>\emph{LOOP}\\
+        \>\>\emph{FETCH} Et2 \emph{INTO} etudiant;\\
+        \>\><instructions>\\
+        \>\>\emph{EXIT WHEN} Et2\%\emph{NOTFOUND};\\
+    \>\emph{END LOOP};\\
+    \>\emph{CLOSE} Et2;\\
+\emph{END};
                     \end{tabbing}
                 \end{alltt}
                 
@@ -548,19 +548,19 @@ Le langage PL/SQL (Procedural Language/Structured Query Language) est un langage
 
                 \begin{alltt}
                     \begin{tabbing}
-                        \emph{DECLARE}\=\\
-                            \><declarations>\\
-                        \emph{BEGIN}\=\\
-                            \><instructions>\\
-                            \>\emph{DECLARE}\=\\
-                                \>\><declarations>\\
-                            \>\emph{BEGIN}\=\\
-                                \>\><instructions>\\
-                                \>\>\emph{INSERT} ...\\
-                            \>\emph{EXCEPTION}\\
-                            \>\emph{END}\\
-                            \>\emph{INSERT} ... \\
-                        \emph{END}
+\emph{DECLARE}\=\\
+    \><declarations>\\
+\emph{BEGIN}\=\\
+    \><instructions>\\
+    \>\emph{DECLARE}\=\\
+        \>\><declarations>\\
+    \>\emph{BEGIN}\=\\
+        \>\><instructions>\\
+        \>\>\emph{INSERT} ...\\
+    \>\emph{EXCEPTION}\\
+    \>\emph{END}\\
+    \>\emph{INSERT} ... \\
+\emph{END}
                     \end{tabbing}
                 \end{alltt}
 
@@ -624,9 +624,9 @@ Le langage PL/SQL (Procedural Language/Structured Query Language) est un langage
                 \paragraph{Exemple}
                     \begin{alltt}
                         \begin{tabbing}
-                            \emph{UPDATE}\=NOTATION\\
-                            \emph{SET}\>MOY_TEST=15\\
-                            \emph{WHERE}\>CODE='BD' \emph{AND} NUM_ET=2401;
+\emph{UPDATE}\=NOTATION\\
+\emph{SET}\>MOY_TEST=15\\
+\emph{WHERE}\>CODE='BD' \emph{AND} NUM_ET=2401;
                         \end{tabbing}
                     \end{alltt}
 
@@ -672,55 +672,55 @@ Le langage PL/SQL (Procedural Language/Structured Query Language) est un langage
             \subsection{Syntaxe}
                 \begin{alltt}
                     \begin{tabbing}
-                        \emph{CREATE} [\emph{OR REPLACE}] \emph{TRIGGER} <nom_trigger>\\
-                        \emph{BEFORE | AFTER} <element_delencheur> \\
-                        [\emph{FOR EACH ROW}]\\
-                        [\emph{WHEN} <condition>]\\
-                        [\emph{DECLARE} ...]\\
-                        [\emph{BEGIN}]\\
-                            <instructions>\\
-                        [\emph{END};]
+\emph{CREATE} [\emph{OR REPLACE}] \emph{TRIGGER} <nom_trigger>\\
+\emph{BEFORE | AFTER} <element_delencheur> \\
+[\emph{FOR EACH ROW}]\\
+[\emph{WHEN} <condition>]\\
+[\emph{DECLARE} ...]\\
+[\emph{BEGIN}]\\
+    <instructions>\\
+[\emph{END};]
                     \end{tabbing}
                 \end{alltt}
 
                 \paragraph{Exemple} mise à jour de l'effectif des professeurs dans \emph{\texttt{DEPNT}}\texttt{(}\underline{\texttt{NOM\_DEP}}\texttt{,Eff\_P)}
                 \begin{alltt}
                     \begin{tabbing}
-                        \emph{CREATE OR REPLACE TRIGGER} MajEff\\
-                        \emph{AFTER INSERT ON} PROF\\
-                        \emph{FOR EACH ROW}\\
-                        \emph{WHEN NEW}.DEP \emph{IS NOT NULL}\\
-                        -- Partie Action\\
-                        \emph{UPDATE} DEPNT\\
-                        \emph{SET} EFF_P=EFF_P+1\\
-                        \emph{WHERE} NOM_DEP=\emph{:NEW}.DEP
+\emph{CREATE OR REPLACE TRIGGER} MajEff\\
+\emph{AFTER INSERT ON} PROF\\
+\emph{FOR EACH ROW}\\
+\emph{WHEN NEW}.DEP \emph{IS NOT NULL}\\
+-- Partie Action\\
+\emph{UPDATE} DEPNT\\
+\emph{SET} EFF_P=EFF_P+1\\
+\emph{WHERE} NOM_DEP=\emph{:NEW}.DEP
                     \end{tabbing}
                 \end{alltt}
 
                 Pour exécuter une opération lors des mises à jour et suppression :
                 \begin{alltt}
                     \begin{tabbing}
-                        \emph{CREATE OR REPLACE TRIGGER} MajEff\\
-                        \emph{AFTER INSERT OR UPDATE OF} DEP \emph{OR DELETE ON} PROF\\
-                        \emph{FOR EACH ROW}\\
-                        \emph{WHEN NEW}.DEP \emph{IS NOT NULL OR OLD}.DEP \emph{IS NULL}\\
-                        -- Partie Action\\
-                        \emph{IF}\=\emph{INSERTING THEN}\\
-                            \>\emph{UPDATE} DEPNT\\
-                            \>\emph{SET} EFF_P=EFF_P+1\\
-                            \>\emph{WHERE} NOM_DEP=\emph{:NEW}.DEP\\
-                        \emph{ELIF}\=\emph{DELETING THEN}\\
-                            \>\emph{UPDATE} DEPNT\\
-                            \>\emph{SET} EFF_P=EFF_P-1\\
-                            \>\emph{WHERE} NOM_DEP=\emph{:OLD}.DEP\\
-                        \emph{ELSE}\=\\
-                            \>\emph{UPDATE} DEPNT\\
-                            \>\emph{SET} EFF_P=EFF_P-1\\
-                            \>\emph{WHERE} NOM_DEP=\emph{:OLD}.DEP\\
-                            \>\emph{UPDATE} DEPNT\\
-                            \>\emph{SET} EFF_P=EFF_P+1\\
-                            \>\emph{WHERE} NOM_DEP=\emph{:NEW}.DEP\\
-                        \emph{END}
+\emph{CREATE OR REPLACE TRIGGER} MajEff\\
+\emph{AFTER INSERT OR UPDATE OF} DEP \emph{OR DELETE ON} PROF\\
+\emph{FOR EACH ROW}\\
+\emph{WHEN NEW}.DEP \emph{IS NOT NULL OR OLD}.DEP \emph{IS NULL}\\
+-- Partie Action\\
+\emph{IF}\=\emph{INSERTING THEN}\\
+    \>  \emph{UPDATE} DEPNT\\
+    \>  \emph{SET} EFF_P=EFF_P+1\\
+    \>  \emph{WHERE} NOM_DEP=\emph{:NEW}.DEP\\
+\emph{ELIF}\=\emph{DELETING THEN}\\
+    \>\emph{UPDATE} DEPNT\\
+    \>\emph{SET} EFF_P=EFF_P-1\\
+    \>\emph{WHERE} NOM_DEP=\emph{:OLD}.DEP\\
+\emph{ELSE}\=\\
+    \>\emph{UPDATE} DEPNT\\
+    \>\emph{SET} EFF_P=EFF_P-1\\
+    \>\emph{WHERE} NOM_DEP=\emph{:OLD}.DEP\\
+    \>\emph{UPDATE} DEPNT\\
+    \>\emph{SET} EFF_P=EFF_P+1\\
+    \>\emph{WHERE} NOM_DEP=\emph{:NEW}.DEP\\
+\emph{END}
                     \end{tabbing}
                 \end{alltt}
 \newpage
