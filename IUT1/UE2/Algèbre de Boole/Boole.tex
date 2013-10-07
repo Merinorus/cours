@@ -128,4 +128,39 @@
             \end{itemize}
 
         Les treillis intéressants sont plutôt ceux pour lequel l'ordre $\leq$ est partiel. Par exemple, $E={1,2,3,5,6,10,10,15,30}$ est un treillis pour la divisibilité : $inf(6,10)=2sup(6,10)=30$ et $inf(3,5)=1sup(3,5)=15$.
+
+        \paragraph{Exemples}
+            \begin{enumerate}
+                \item $E={a,b,c,d}\leq$ défini par $\left|\begin{matrix}a\leq c\\b\leq c\\a\leq d\\b\leq d\end{matrix}\right.$ plus la réflexivité et la « fermeture transitive » $\leq$ est bien un ordre (par construction), mais $(E,\leq)$ n'est pas un treillis : ${c,d}$ n'est pas majoré donc $sup{c,d}$ n'existe pas. $a$ et $b$ minorent ${c,d}$ mais ne sont pas comparables, donc $inf(c,d)$ n'existe pas.
+                \item $\leq$ est définie par $x\leq y\Leftrightarrow$ il existe une suite de flèches adjacentes conduisant de $x$ à $y$ (plus la réflexivité). On a bien une structure de treillis et l'ordre est partiel (on n'a ni $b\leq c$ ni $c\leq b$).
+                \item $E\neq\emptyset$ : $(P(E),\subset)$ est un treillis. Pour $a\subset E,B\subset E$ on a $inf(A,B)=A\cap B$ et $sup(A,B)=A\cup B$.
+            \end{enumerate}
+
+    \section{Opérations sur un treillis}
+        Soit $(E,\leq)$ un treillis. On pose :
+        $$
+            a+b:=sup(a,b)
+        $$$$
+            a\times b:=inf(a,b)
+        $$
+
+    \section{Propriétés}
+        \begin{enumerate}
+            \item $+$ et $\times$ sont associatives et commutatives
+            \item Si $E$ est fini alors $sup(E)=max(E)$ et $inf(E)=min(E)$ existent; si $E={R_1,R_2,\hdots,R_n}$, on pose :
+            $$
+                1_E=a_1+a_2+\hdots+a_n=max(E)
+            $$$$
+                0_E=a_1\times a_2\times\hdots\times a_n=min(E)
+            $$
+            \item Si $1_E=sup(E)$ et $0_E=inf(E)$ existent, alors :
+                \begin{itemize}
+                    \item $1_E$ est absorbant par $+$ : $a+1_E=1_E$ pour tout $a\in E$
+                    \item $A_E$ est élément neutre par $\times$ : $a\times 1_E=a$ pour tout $a\in E$
+                    \item $9_E$ est absorbant par $\times$ : $a\times 0_E=0_E$ pour tout $a\in E$
+                    \item $0_E$ est élément neutre par $+$ : $a+0_E=a$ pour tout $a\in E$
+                \end{itemize}
+        \end{enumerate}
+
+    \subsection{Treillis distributifs}
 \end{document}
