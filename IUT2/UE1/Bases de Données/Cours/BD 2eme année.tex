@@ -617,6 +617,112 @@ Le langage PL/SQL (Procedural Language/Structured Query Language) est un langage
                     \end{tabular}
                     \caption{Chronologie d'un trigger orienté tuple de type \emph{\texttt{BEFORE}}}
                 \end{figure}
+
+            \subsection{Informations véhiculées par un évènement}
+                Il est possible d'utiliser \emph{\texttt{OLD}} et \emph{\texttt{NEW}} pour accéder à l'ancien et au nouveau tuple manipulé par un trigger LMD orienté tuple.
+
+                \paragraph{Exemple}
+                    \begin{alltt}
+                        \begin{tabbing}
+                            \emph{UPDATE}\=NOTATION\\
+                            \emph{SET}\>MOY_TEST=15\\
+                            \emph{WHERE}\>CODE='BD' \emph{AND} NUM_ET=2401;
+                        \end{tabbing}
+                    \end{alltt}
+
+                On suppose que la moyenne de cet étudiant en BD était 12.
+                \begin{itemize}
+                    \item \emph{\texttt{OLD}}\texttt{.NUM\_ET=}\emph{\texttt{NEW}}\texttt{.NUM\_ET=24401}
+                    \item \emph{\texttt{OLD}}\texttt{.CODE=}\emph{\texttt{NEW}}\texttt{.CODE='BD'}
+                    \item \emph{\texttt{OLD}}\texttt{.MOY\_TEST=12} et \emph{\texttt{NEW}}\texttt{.MOY\_TEST=15}
+                \end{itemize}
+
+                Pour \emph{\texttt{INSERT}}, \emph{\texttt{NEW}}\texttt{.attribut=}nouvelle valeur de l'attribut, et \emph{\texttt{OLD}}\texttt{.attribut=}\emph{\texttt{NULL}}.
+
+                Pour \emph{\texttt{DELETE}}, \emph{\texttt{OLD}}\texttt{.attribut}=valeur avant la suppression, et \emph{\texttt{NEW}}\texttt{.attribut=}\emph{\texttt{NULL}}.
+
+            \subsection{Partie Condition}
+                Pour les triggers LMD orientés tuples, où une seule relation est concernée, les conditions (dans \emph{\texttt{WHEN}}) sont des combinaisons booléennes de conditions simples (comme les conditions de \emph{\texttt{WHERE}}).
+
+                \paragraph{Remarque} pas de jointure imbriquée
+                \begin{figure}[H]
+                    \begin{tabular}{*{7}{p{2cm}}}
+                        Ordre LMD & Lecture des tuples concernés & Évaluation de la condition pour le 1\up{er} tuple & Exécution du trigger pour le 1\up{er} tuple & Exécution de la requête pour le 1\up{er} tuple & Évaluation de la condition pour le 2\up{ème} tuple & Exécution de la requête pour le 2\up{ème} tuple \\
+                       \hline
+                        |t1 & |t2 & |t3 & |t4 & |t5 & |t6 & |t7\\
+                        && Condition vraie pour le 1\up{er} tuple && Condition fausse pour le 2\up{ème} tuple
+                    \end{tabular}
+                    \caption{Chronologie de la partie condition}
+                \end{figure}
+
+            \subsection{Partie Action}
+                \begin{itemize}
+                    \item Jamais de \emph{\texttt{COMMIT}} ou de \emph{\texttt{ROLLBACK}} car le trigger est déclenché au cours d'une transaction qu'il n'a jamais le droit de terminer ou de défaire
+                    \item Pour les triggers LMD orientés tuples, on ne peut pas faire de mise à jour sur la relation concernée (table en mutation)
+                    \item On peut utiliser \emph{\texttt{IF [INSERTING | DELETING | UPDATING]}}
+                    \item Enchainement de triggers
+
+                    \begin{figure}[H]
+                        \begin{center}
+                        \end{center}
+                        \caption{Enchainement de triggers}
+                    \end{figure}
+                \end{itemize}
+
+            \subsection{Syntaxe}
+                \begin{alltt}
+                    \begin{tabbing}
+                        \emph{CREATE} [\emph{OR REPLACE}] \emph{TRIGGER} <nom_trigger>\\
+                        \emph{BEFORE | AFTER} <element_delencheur> \\
+                        [\emph{FOR EACH ROW}]\\
+                        [\emph{WHEN} <condition>]\\
+                        [\emph{DECLARE} ...]\\
+                        [\emph{BEGIN}]\\
+                            <instructions>\\
+                        [\emph{END};]
+                    \end{tabbing}
+                \end{alltt}
+
+                \paragraph{Exemple} mise à jour de l'effectif des professeurs dans \emph{\texttt{DEPNT}}\texttt{(}\underline{\texttt{NOM\_DEP}}\texttt{,Eff\_P)}
+                \begin{alltt}
+                    \begin{tabbing}
+                        \emph{CREATE OR REPLACE TRIGGER} MajEff\\
+                        \emph{AFTER INSERT ON} PROF\\
+                        \emph{FOR EACH ROW}\\
+                        \emph{WHEN NEW}.DEP \emph{IS NOT NULL}\\
+                        -- Partie Action\\
+                        \emph{UPDATE} DEPNT\\
+                        \emph{SET} EFF_P=EFF_P+1\\
+                        \emph{WHERE} NOM_DEP=\emph{:NEW}.DEP
+                    \end{tabbing}
+                \end{alltt}
+
+                Pour exécuter une opération lors des mises à jour et suppression :
+                \begin{alltt}
+                    \begin{tabbing}
+                        \emph{CREATE OR REPLACE TRIGGER} MajEff\\
+                        \emph{AFTER INSERT OR UPDATE OF} DEP \emph{OR DELETE ON} PROF\\
+                        \emph{FOR EACH ROW}\\
+                        \emph{WHEN NEW}.DEP \emph{IS NOT NULL OR OLD}.DEP \emph{IS NULL}\\
+                        -- Partie Action\\
+                        \emph{IF}\=\emph{INSERTING THEN}\\
+                            \>\emph{UPDATE} DEPNT\\
+                            \>\emph{SET} EFF_P=EFF_P+1\\
+                            \>\emph{WHERE} NOM_DEP=\emph{:NEW}.DEP\\
+                        \emph{ELIF}\=\emph{DELETING THEN}\\
+                            \>\emph{UPDATE} DEPNT\\
+                            \>\emph{SET} EFF_P=EFF_P-1\\
+                            \>\emph{WHERE} NOM_DEP=\emph{:OLD}.DEP\\
+                        \emph{ELSE}\=\\
+                            \>\emph{UPDATE} DEPNT\\
+                            \>\emph{SET} EFF_P=EFF_P-1\\
+                            \>\emph{WHERE} NOM_DEP=\emph{:OLD}.DEP\\
+                            \>\emph{UPDATE} DEPNT\\
+                            \>\emph{SET} EFF_P=EFF_P+1\\
+                            \>\emph{WHERE} NOM_DEP=\emph{:NEW}.DEP\\
+                        \emph{END}
+                    \end{tabbing}
+                \end{alltt}
 \newpage
 \part*{Index}
 \tableofcontents
