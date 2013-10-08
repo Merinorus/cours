@@ -24,4 +24,7 @@ Les contenus des dossiers *Anglais* et *Communication*, ainsi que les TP, sont d
 
 Certains cours de 1ère année ne sont pas terminés, je les complèterais quand j'aurais du temps.
 
-Les cours non fournis par les professeurs ont été réécrits par moi; toutefois, le contenu du cours appartient à son auteur et nécessite son autorisation pour l'utilisation dans un autre établissement que l'IUT d'Aix-en-Provence.
+Les cours non fournis par les professeurs ont été réécrits par moi, à l'exception de :
+- Algèbre de Boole, par Cédric CANESTRARI
+
+Le contenu du cours appartient à son auteur et nécessite son autorisation pour l'utilisation dans un autre établissement que l'IUT d'Aix-en-Provence.
