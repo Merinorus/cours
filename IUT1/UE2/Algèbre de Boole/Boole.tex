@@ -163,4 +163,45 @@
         \end{enumerate}
 
     \subsection{Treillis distributifs}
+        Un treillis $(E,\leq)$ est dit distributif si :
+            \begin{itemize}
+                \item $(a+b)\times c=a\times c+b\times c$ (distributivité de $\times$ par rapport à $+$)
+                \item $a+b\times c=(a+b)\times(a+c)$ (distributivité de $+$ par rapport $\times$)
+            \end{itemize}
+        
+            \paragraph{Exemples}
+                \begin{enumerate}
+                    \item $E\neq\emptyset,(P(E),\subset)$ : ici, $+$ est la réunion et $\times$ est l'intersection, et on a :
+                        \begin{itemize}
+                            \item $((A\cup B)\cap C)=(A\cap C)\cup(B\cap C)$
+                            \item $A\cup(B\cap C)=(A\cup B)\cap(A\cup C)$
+                        \end{itemize}
+                    \item $E={a,b,c,d,e}\leq$ induite par $\left|\begin{matrix}a\leq b\\
+                    a\leq c\\
+                    a\leq e\\
+                    b\leq d\\
+                    c\leq d\\
+                    e\leq d\\
+                    \end{matrix}\right.$
+
+                    $(E,\leq)$ est bien un treillis, mais il n'est pas distributif :
+                        $$
+                        \left(
+                        \begin{array}{rcrcrcrcr}
+                            &&&&(e\times(b+c)) &=& e\times d &=&e\\
+                            &&&&&& e\times b &=& a\\
+                            e\times c &=& a &\Rightarrow& e\times b+e \times c &=&a+a &=& a
+                        \end{array}
+                        \right)\Rightarrow e\times b(b+c)\neq e\times b+e\times c
+                        $$
+                \end{enumerate}
+
+    \subsection{Treillis complémentés}
+        Soit $(E,\leq)$ un treillis avec $1_E=sup(E)$ et $0_E=inf(E)$; $(E,\leq)$ est dit complémenté si, pour chaque $a\in E$, il existe $x\in E$ vérifiant $\left|\begin{matrix}a+x=1_E\\a\times x=0_E\end{matrix}\right.$
+
+        \paragraph{Remarque} Si $(E,\leq)$ est distributif, le système ci-dessus admet au plus une solution : on l'appelle le complément de $a$ et on le note $\bar{a}$. On aura alors évidemment $\bar{\bar{a}}=a$.
+
+    \subsection{Algèbre de Boole}
+        \subsubsection{Définition}
+            Une algèbre de Boole est un treillis distibutif complémenté. L'exemple prototype $(P(E),\subset)$ avec $E\neq\emptyset$. Un exemple fondamental est $B={0,1}$.
 \end{document}
