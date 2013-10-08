@@ -37,17 +37,14 @@
 
 % Page de garde + page blanche
 \maketitle
-\setcounter{page}{0} \thispagestyle{empty} % Ne pas numéroter la page de garde + pas d'en-tête/pied-de-page
 \newpage
-\setcounter{page}{2} % Commencer la numérotation à 2
 ~\\
-\newpage
 
 \renewcommand{\contentsname}{Sommaire}
 \tableofcontents
+\newpage
 
 % Début du document
-\newpage
 \part{Relation d'ordre}
     \section{Définition}
         Soit $E$ un ensemble et $R$ une relation linéaire entre éléments de $E$. $R$ est un ordre sur $E \Leftrightarrow R$ est réflexive, antisymétrique et transitive.
@@ -73,11 +70,11 @@
 
                 $C$ est asymétrique, $\subset$ est donc un ordre de $P(E)$.
 
-                \item La relation « $a$ divise $b$ » définit un ordre partiel sur $\mathbb{N}^*$ (notation : $a|b$). En effet, pour tout $a\neq 0, a|a$ donc $|$ est réflexive. $(a|b)$ et $(b|a)\Rightarrow a=b$ donc $|$ est asymétrique. $(a|b)$ et $(b|a)\Rightarrow a|c$ donc $|$ est transitive. Par exemple, $5|15$ mais $\lnot(4|15)$ : l'ordre est donc partiel.
+                \item La relation « $a$ divise $b$ » définit un ordre partiel sur $\mathbb{N}^*$ (notation : $a|b$). En effet, pour tout $a\neq 0, a|a$ donc $|$ est réflexive. $(a|b)$ et $(b|a)\Rightarrow a=b$ donc $|$ est asymétrique. $\left|\begin{matrix}(a|b)\\(b|a)\end{matrix}\right.\Rightarrow a|c$ donc $|$ est transitive. Par exemple, $5|15$ mais $\lnot(4|15)$ : l'ordre est donc partiel.
                 \item Représenter la relation $a|b$ sur l'ensemble des diviseurs de 30, puis 60.
                     \begin{itemize}
-                        \item Les diviseurs de 30 : ${1,2,3,5,6,10,15,30}$
-                        \item Les diviseurs de 60 : ${1,2,3,4,5,6,10,12,15,20,30,60}$
+                        \item Les diviseurs de 30 : $\{1,2,3,5,6,10,15,30\}$
+                        \item Les diviseurs de 60 : $\{1,2,3,4,5,6,10,12,15,20,30,60\}$
                     \end{itemize}
 
                 Sur $\mathbb{N}$, la relation $\leq$ usuelle définit un ordre total.
@@ -112,7 +109,7 @@
 
             $A\subset E$ admet une borne supérieure (notée $sup(A)$)$\Leftrightarrow A$ admet des majorants dans $E$ et l'ensemble des majorants admet un plus petit élément (c'est $asup(A)$).
 
-            \paragraph{Exemple} Dans les diviseurs de 30, ${1,3,5}$ est majoré par 15 et 30; ${5,10,15}$ est minoré par 5 et 1.
+            \paragraph{Exemple} Dans les diviseurs de 30, $\{1,3,5\}$ est majoré par 15 et 30; $\{5,10,15\}$ est minoré par 5 et 1.
 
 \newpage
 \part{Treillis}
@@ -127,7 +124,7 @@
                 \item dans le 2\up{ème} cas : $a=sup(a,b)$ et $b=inf(a,b)$
             \end{itemize}
 
-        Les treillis intéressants sont plutôt ceux pour lequel l'ordre $\leq$ est partiel. Par exemple, $E={1,2,3,5,6,10,10,15,30}$ est un treillis pour la divisibilité : $inf(6,10)=2sup(6,10)=30$ et $inf(3,5)=1sup(3,5)=15$.
+        Les treillis intéressants sont plutôt ceux pour lequel l'ordre $\leq$ est partiel. Par exemple, $E=\{1,2,3,5,6,10,10,15,30\}$ est un treillis pour la divisibilité : $inf(6,10)=2sup(6,10)=30$ et $inf(3,5)=1sup(3,5)=15$.
 
         \paragraph{Exemples}
             \begin{enumerate}
