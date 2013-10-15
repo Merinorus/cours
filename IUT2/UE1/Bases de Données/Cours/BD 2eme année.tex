@@ -416,7 +416,7 @@ etudiant.NOM_ET:=\emph{UPPER}(etudiant.NOM_ET)
 			\paragraph{Exemple}
 				\begin{alltt}
 					\begin{tabbing}
-						\emph{CURSOR} \=EFF_AN(An ETUDIANT, AN\%\emph{TYPE}) \emph{IS} \=\emph{SELECT} \=DEPT, \emph{COUNT}(*) Nb\\
+						\emph{CURSOR} \=EFF_AN(An ETUDIANT.ANNNE\%\emph{TYPE}) \emph{IS} \=\emph{SELECT} \=DEPT, \emph{COUNT}(*) Nb\\
 									\>\emph{FROM}\>ETUDIANT\\
 									\>\emph{WHERE}\>ANNEE=An\\
 									\>\emph{GROUP BY} DEPT;\\
