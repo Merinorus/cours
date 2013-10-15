@@ -1,0 +1,30 @@
+create or replace
+FUNCTION VILLE_RES(NUM IN NUMBER)
+                  RETURN VARCHAR2 IS 
+Etu NUMBER(1,0) DEFAULT 0;
+VilleRes VARCHAR2(20);
+EtuNotExists EXCEPTION;
+VilleNull EXCEPTION;
+BEGIN
+  SELECT COUNT(NUM_ET) INTO Etu
+  FROM ETUDIANT WHERE NUM_ET=NUM;
+  
+  IF Etu = 0 THEN
+    RAISE EtuNotExists;
+  END IF;
+  
+  SELECT VILLE_ET INTO VilleRes
+  FROM ETUDIANT WHERE NUM_ET=NUM;
+  
+  IF VilleRes IS NULL THEN
+    RAISE VilleNull;
+  END IF;
+  
+  RETURN VilleRes;
+EXCEPTION
+  WHEN EtuNotExists THEN DBMS_OUTPUT.PUT_LINE('L''étudiant n''existe pas'); RETURN sqlcode;
+  WHEN VilleNull THEN DBMS_OUTPUT.PUT_LINE('Aucune ville'); RETURN sqlcode;
+  WHEN OTHERS THEN DBMS_OUTPUT.PUT_LINE(sqlerrm); RETURN sqlcode;
+  
+  
+END VILLE_RES;
